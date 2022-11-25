@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { isClassElement } from "typescript";
 import { api } from "../../services/api";
+import RightCard from "./RightCard";
 import * as S from "./styles";
 
 const countries = [
@@ -23,7 +24,7 @@ interface Country {
   flagImage: string;
 }
 
-interface Card {
+export interface Card {
   name: string;
   country: string;
   description: string;
@@ -50,8 +51,6 @@ export const Album = () => {
     setCards(responseCards.data);
     return responseCards.data;
   };
-
-  console.log(selectedCard);
 
   const setNextCountry = () => {
     const indexCountryActual = countries.indexOf(selectedCountry);
@@ -117,7 +116,7 @@ export const Album = () => {
               ))}
             </S.GridCards>
           </S.PageLeft>
-          <S.PageRight><RightCard/></S.PageRight>
+          <S.PageRight><RightCard selectedCard={selectedCard}/></S.PageRight>
         </S.Album>
         <S.PaginationAlbum>
           <S.PreviousCountry

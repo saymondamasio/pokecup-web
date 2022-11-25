@@ -6,7 +6,7 @@ export const Wrapper = styled.main`
   background: no-repeat center/100% url(/assets/background-album.png);
   width: 100%;
   height: 100%;
-  overflow: overlay;
+  
 
   display: flex;
   align-items: center;
@@ -65,7 +65,7 @@ export const Album = styled.div`
 
 export const PageLeft = styled.div`
   flex: 1;
-  background-color: #c4c4c4;
+  background-color: rgba(195,195,195,0.8);
   padding: 40px;
 
   display: flex;
@@ -131,7 +131,7 @@ export const NameCard = styled.h3`
 
 export const PageRight = styled.div`
   flex: 1;
-  background-color: #b0afaf;
+  background-color: rgba(176,175,175,0.8);
   padding: 15px 0;
 `;
 

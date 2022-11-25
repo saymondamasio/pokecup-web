@@ -1,34 +1,46 @@
 import * as S from "./styles"
 import AbilityContent from "./AbilityContent"
+import { Card } from ".."
+interface RightCardProps {
+    selectedCard: Card | null
+}
+export default function RightCard({selectedCard}:RightCardProps ){
 
-export default function RightCard(){
+ if(!selectedCard) {
+    return  (<div></div>)
+ }
+
+  const  { country,description,name,image,abilities} = selectedCard
+const abilitiesArray = Object.values(abilities)
     return(
        <S.WhiteCard>
             <S.TopContent>
                 <S.CountryContent>
                     <S.CountryTitle>Pais</S.CountryTitle>
-                    <S.Country>Catar</S.Country>
+                    <S.Country>{country}</S.Country>
                 </S.CountryContent>
                 <S.NameContent>
                     <S.PokemonTitle>Nome</S.PokemonTitle>
-                    <S.PokemonName>Seaking</S.PokemonName>
+                    <S.PokemonName>{name}</S.PokemonName>
                 </S.NameContent>
             </S.TopContent>
             <S.ImageContainer>
-                <img src="/catar/Seaking.png" alt="imagem ilustrativa de um pokemon" />
+                <img src={image} alt="imagem ilustrativa de um pokemon" />
             </S.ImageContainer>
             <S.AbilityWrapper>
                 <S.AbilityContent>
-                <AbilityContent ability="Habilidade" value="67" />
-                <AbilityContent ability="Defesa" value="67" />
-                <AbilityContent  ability="Fraquesa" value="67"/>
-                <AbilityContent ability="Finalização" value="67" />
+
+                <AbilityContent ability="Habilidade" value={abilitiesArray[0]} />
+                <AbilityContent ability="Defesa" value={abilitiesArray[1]} />
+                <AbilityContent  ability="Fraquesa" value={abilitiesArray[2]}/>
+                <AbilityContent ability="Finalização" value={abilitiesArray[3]} /> 
                 </S.AbilityContent>
 
             <S.DescriptionWrapper>
-                <S.Description>Lorem ipsulum e nois Brasil</S.Description>
+                <S.Description>{description}</S.Description>
             </S.DescriptionWrapper>
             </S.AbilityWrapper>
        </S.WhiteCard>
     )
+
 }
