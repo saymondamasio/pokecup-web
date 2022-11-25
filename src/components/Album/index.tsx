@@ -116,13 +116,7 @@ export const Album = () => {
               ))}
             </S.GridCards>
           </S.PageLeft>
-<<<<<<< HEAD
           <S.PageRight><RightCard selectedCard={selectedCard}/></S.PageRight>
-=======
-          <S.PageRight>
-            <RightCard />
-          </S.PageRight>
->>>>>>> 76ddedeaaf29bd637ee74555ccf9f758b2ad8ec2
         </S.Album>
         <S.PaginationAlbum>
           <S.PreviousCountry
