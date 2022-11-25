@@ -6,7 +6,6 @@ export const Wrapper = styled.main`
   background: no-repeat center/100% url(/assets/background-album.png);
   width: 100%;
   height: 100%;
-  overflow: overlay;
 
   display: flex;
   align-items: center;

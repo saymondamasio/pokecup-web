@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { isClassElement } from "typescript";
 import { api } from "../../services/api";
+import RightCard from "./RightCard";
 import * as S from "./styles";
 
 const countries = [
@@ -117,7 +118,9 @@ export const Album = () => {
               ))}
             </S.GridCards>
           </S.PageLeft>
-          <S.PageRight><RightCard/></S.PageRight>
+          <S.PageRight>
+            <RightCard />
+          </S.PageRight>
         </S.Album>
         <S.PaginationAlbum>
           <S.PreviousCountry
