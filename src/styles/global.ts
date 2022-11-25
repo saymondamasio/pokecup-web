@@ -9,12 +9,18 @@ const GlobalStyles = createGlobalStyle`
   html {
     font-size: 62.5%;
   }
+
+  button {
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+  }
   
   html, body, #__next {
     height: 100%;
   }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Inter', sans-serif;
+    font-size: 16rem;
   }
 `;
 
