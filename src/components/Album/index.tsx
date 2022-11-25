@@ -1,9 +1,38 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-import { AiOutlineArrowLeft } from "react-icons/ai";
+import { useEffect, useState } from "react";
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import { api } from "../../services/api";
 import * as S from "./styles";
 
+interface Card {
+  name: string;
+  country: string;
+  description: string;
+  image: string;
+  abilities: {
+    ability: string;
+    defense: string;
+    finalization: string;
+    weakness: string;
+  };
+}
+
 export const Album = () => {
+  const [cards, setCards] = useState<Card[]>([]);
+
+  useEffect(() => {
+    const getCards = async () => {
+      console.log(process.env.API_URL);
+      const responseCards = await api.get<Card[]>("cards?_page=1&_limit=6");
+
+      console.log(responseCards);
+      setCards(responseCards.data);
+    };
+
+    getCards();
+  }, []);
+
   return (
     <S.Wrapper>
       <S.Header>
@@ -26,14 +55,29 @@ export const Album = () => {
             </S.FlagCountry>
 
             <S.GridCards>
-              <S.Card>
-                <S.ImageCard />
-                <S.NameCard />
-              </S.Card>
+              {cards.map((card) => (
+                <S.Card key={card.name}>
+                  <S.ImageCard
+                    src={card.image}
+                    width={100}
+                    height={100}
+                    alt={card.name}
+                  />
+                  <S.NameCard>{card.name}</S.NameCard>
+                </S.Card>
+              ))}
             </S.GridCards>
           </S.PageLeft>
           <S.PageRight></S.PageRight>
         </S.Album>
+        <S.PaginationAlbum>
+          <S.PreviousPage>
+            <AiOutlineArrowLeft size={20} />
+          </S.PreviousPage>
+          <S.NextPage>
+            <AiOutlineArrowRight size={20} />
+          </S.NextPage>
+        </S.PaginationAlbum>
       </S.Main>
     </S.Wrapper>
   );
