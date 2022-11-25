@@ -132,6 +132,7 @@ export const NameCard = styled.h3`
 export const PageRight = styled.div`
   flex: 1;
   background-color: #b0afaf;
+  padding: 15px 0;
 `;
 
 export const PaginationAlbum = styled.div`

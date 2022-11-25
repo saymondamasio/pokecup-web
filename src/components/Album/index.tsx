@@ -1,5 +1,6 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+
 import { useEffect, useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { isClassElement } from "typescript";
@@ -116,7 +117,7 @@ export const Album = () => {
               ))}
             </S.GridCards>
           </S.PageLeft>
-          <S.PageRight></S.PageRight>
+          <S.PageRight><RightCard/></S.PageRight>
         </S.Album>
         <S.PaginationAlbum>
           <S.PreviousCountry
