@@ -97,4 +97,5 @@ export const NameCard = styled.div``;
 export const PageRight = styled.div`
   flex: 1;
   background-color: #b0afaf;
+  padding: 15px 0;
 `;

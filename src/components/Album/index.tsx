@@ -1,6 +1,8 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+import RightCard from "./RightCard";
+
 import * as S from "./styles";
 
 export const Album = () => {
@@ -32,7 +34,7 @@ export const Album = () => {
               </S.Card>
             </S.GridCards>
           </S.PageLeft>
-          <S.PageRight></S.PageRight>
+          <S.PageRight><RightCard/></S.PageRight>
         </S.Album>
       </S.Main>
     </S.Wrapper>
