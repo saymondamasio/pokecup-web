@@ -5,6 +5,7 @@ width: 480px;
 height:100%;
 margin:0 auto;
 background-color:#FFF;
+overflow:hidden;
 
 `
 
@@ -25,6 +26,7 @@ const NameAndCountryStyle = styled.div`
     display:flex;
     flex-direction:column;
     justify-content:space-around;
+
 `
 export const CountryContent = styled(NameAndCountryStyle)`
 background-color:#AF4734;
@@ -53,3 +55,40 @@ export const PokemonName = styled(NameAndCountryTitleStyle)`
 export const NameContent = styled(NameAndCountryStyle)`
     background-color:#E25941;
 `
+
+export const ImageContainer = styled.div`
+width: 100%;
+height:40%;
+
+img{
+    height:175px;
+    width:100%;
+    object-fit:contain;
+}
+`
+
+export const AbilityWrapper = styled.div`
+width:100%;
+background-color:#E25941;
+height: 100%;
+
+`
+
+export const AbilityContent = styled.div`
+display:flex;
+flex-wrap:wrap;
+padding:10px;
+justify-content:space-around;
+
+`
+
+export const DescriptionWrapper = styled.div`
+
+
+`
+export const Description = styled.p`
+    font-size: 16px;
+    text-align:center;
+    color:#FFf;
+`
+
