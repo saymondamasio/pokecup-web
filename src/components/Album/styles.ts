@@ -77,6 +77,10 @@ export const FlagCountry = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  img {
+    object-fit: cover;
+  }
 `;
 
 export const Title = styled.h2`
@@ -100,8 +104,9 @@ export const GridCards = styled.div`
   gap: 30px;
 `;
 
-export const Card = styled.div`
+export const Card = styled.button`
   background-color: #fff;
+  border: none;
 
   padding: 20px;
 
@@ -139,7 +144,7 @@ export const PaginationAlbum = styled.div`
   justify-content: space-between;
 `;
 
-export const PreviousPage = styled.button`
+export const PreviousCountry = styled.button`
   background-color: #fff;
   border-radius: 50%;
   height: 50px;
@@ -151,7 +156,7 @@ export const PreviousPage = styled.button`
   justify-content: center;
 `;
 
-export const NextPage = styled.button`
+export const NextCountry = styled.button`
   background-color: #fff;
   border-radius: 50%;
   border: none;

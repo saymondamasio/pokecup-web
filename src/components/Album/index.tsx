@@ -2,8 +2,25 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import { isClassElement } from "typescript";
 import { api } from "../../services/api";
 import * as S from "./styles";
+
+const countries = [
+  { name: "Catar", flagImage: "qatar.png" },
+  { name: "Brasil", flagImage: "brasil.png" },
+  { name: "Inglaterra", flagImage: "inglaterra.png" },
+  { name: "França", flagImage: "franca.png" },
+  { name: "Portugal", flagImage: "portugal.png" },
+  { name: "Argentina", flagImage: "argentina.png" },
+  { name: "Belgica", flagImage: "belgica.png" },
+  { name: "Espanha", flagImage: "espanha.png" },
+];
+
+interface Country {
+  name: string;
+  flagImage: string;
+}
 
 interface Card {
   name: string;
@@ -20,18 +37,49 @@ interface Card {
 
 export const Album = () => {
   const [cards, setCards] = useState<Card[]>([]);
+  const [selectedCard, setSelectedCard] = useState<Card | null>(null);
+  const [selectedCountry, setSelectedCountry] = useState<Country>(countries[0]);
+  const [selectedCountryIndex, setSelectedCountryIndex] = useState<number>(0);
+
+  const getCardsFromCountry = async (country: string) => {
+    const responseCards = await api.get<Card[]>(
+      `cards?country=${country}&_limit=6`
+    );
+
+    setCards(responseCards.data);
+    return responseCards.data;
+  };
+
+  console.log(selectedCard);
+
+  const setNextCountry = () => {
+    const indexCountryActual = countries.indexOf(selectedCountry);
+    const nextCountry = countries[indexCountryActual + 1];
+
+    if (nextCountry) {
+      setSelectedCountry(nextCountry);
+      setSelectedCountryIndex(indexCountryActual + 1);
+    }
+  };
+
+  const setPreviousCountry = () => {
+    const indexCountryActual = countries.indexOf(selectedCountry);
+    const previousCountry = countries[indexCountryActual - 1];
+
+    if (previousCountry) {
+      setSelectedCountry(previousCountry);
+      setSelectedCountryIndex(indexCountryActual - 1);
+    }
+  };
 
   useEffect(() => {
-    const getCards = async () => {
-      console.log(process.env.API_URL);
-      const responseCards = await api.get<Card[]>("cards?_page=1&_limit=6");
+    (async () => {
+      const responseCards = await getCardsFromCountry(selectedCountry.name);
 
-      console.log(responseCards);
-      setCards(responseCards.data);
-    };
-
-    getCards();
-  }, []);
+      setSelectedCard(responseCards[0]);
+      setCards(responseCards);
+    })();
+  }, [selectedCountry.name]);
 
   return (
     <S.Wrapper>
@@ -46,17 +94,17 @@ export const Album = () => {
           <S.PageLeft>
             <S.FlagCountry>
               <Image
-                src="/assets/qatar.png"
-                alt="Qatar"
-                width={500}
-                height={200}
+                src={`/countries/${selectedCountry.flagImage}`}
+                alt={selectedCountry.name}
+                width={400}
+                height={230}
               />
-              <S.Title>QATAR</S.Title>
+              <S.Title>{selectedCountry.name}</S.Title>
             </S.FlagCountry>
 
             <S.GridCards>
               {cards.map((card) => (
-                <S.Card key={card.name}>
+                <S.Card key={card.name} onClick={() => setSelectedCard(card)}>
                   <S.ImageCard
                     src={card.image}
                     width={100}
@@ -71,12 +119,18 @@ export const Album = () => {
           <S.PageRight></S.PageRight>
         </S.Album>
         <S.PaginationAlbum>
-          <S.PreviousPage>
+          <S.PreviousCountry
+            onClick={setPreviousCountry}
+            disabled={selectedCountryIndex <= 0}
+          >
             <AiOutlineArrowLeft size={20} />
-          </S.PreviousPage>
-          <S.NextPage>
+          </S.PreviousCountry>
+          <S.NextCountry
+            onClick={setNextCountry}
+            disabled={selectedCountryIndex >= countries.length - 1}
+          >
             <AiOutlineArrowRight size={20} />
-          </S.NextPage>
+          </S.NextCountry>
         </S.PaginationAlbum>
       </S.Main>
     </S.Wrapper>
