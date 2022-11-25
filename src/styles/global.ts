@@ -20,7 +20,7 @@ const GlobalStyles = createGlobalStyle`
   }
   body {
     font-family: 'Inter', sans-serif;
-    font-size: 16rem;
+    font-size: 1.6rem;
   }
 `;
 
